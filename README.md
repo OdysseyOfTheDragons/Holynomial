@@ -43,3 +43,13 @@ POLYNOMIAL: 4x^2 + 4x + 4
 
 7. List your polynomials
 8. Chain instructions
+
+## Flexibility
+
+You don't like the `POLYNOMIAL: ...`  text each time you execute an action?
+
+No worries, it can be easily configured through special commands:
+
+* `@no_extra`: Disables the `POLYNOMIAL: ...` on each action
+* `@beauty_print`: Changes the print output format from
+  `POLYNOMIAL: polynomial = x^2 + 2` to `x^2 + 2`
