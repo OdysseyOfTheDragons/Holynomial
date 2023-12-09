@@ -13,7 +13,8 @@
 
 	*counter = 0;
 } */
-void clear_word(string* word, int* counter) {
+void clear_word(string * word, int *counter)
+{
 	clear_string(word);
 	*counter = 0;
 }
@@ -23,14 +24,15 @@ void clear_word(string* word, int* counter) {
 	return strcmp(s1, s2) == 0;
 } */
 
-void print(char* msg) {
+void print(char *msg)
+{
 	// We parse the string char by char
 	// When we get a tag, we call the according function
-	
+
 	int length = strlen(msg);
-	string* word = create_string();
+	string *word = create_string();
 	/* char* word = (char*)malloc((length + 1) * sizeof(char));
-	clear_word(word, &length); */
+	   clear_word(word, &length); */
 
 	// We cleaned the length variable, so we define it once more
 	/* length = strlen(msg); */
@@ -48,7 +50,7 @@ void print(char* msg) {
 			printf("\033[0m");
 			clear_word(word, &word_length_counter);
 		}
-		
+
 		else if (cmp(word, "[bold]")) {
 			printf("\033[1m");
 			clear_word(word, &word_length_counter);
@@ -83,15 +85,15 @@ void print(char* msg) {
 			printf("\t");
 			clear_word(word, &word_length_counter);
 		}
-		
+
 		else if (cmp(word, "[fg(black)]")
-				|| cmp(word, "[/fg(red)]")
-				|| cmp(word, "[/fg(green)]")
-				|| cmp(word, "[/fg(yellow)]")
-				|| cmp(word, "[/fg(blue)]")
-				|| cmp(word, "[/fg(magenta)]")
-				|| cmp(word, "[/fg(cyan)]")
-				|| cmp(word, "[/fg(white)]")) {
+			 || cmp(word, "[/fg(red)]")
+			 || cmp(word, "[/fg(green)]")
+			 || cmp(word, "[/fg(yellow)]")
+			 || cmp(word, "[/fg(blue)]")
+			 || cmp(word, "[/fg(magenta)]")
+			 || cmp(word, "[/fg(cyan)]")
+			 || cmp(word, "[/fg(white)]")) {
 			printf("\033[30m");
 			clear_word(word, &word_length_counter);
 		} else if (cmp(word, "[fg(red)]")) {
@@ -116,7 +118,7 @@ void print(char* msg) {
 			printf("\033[97m");
 			clear_word(word, &word_length_counter);
 		}
-		
+
 		else if (cmp(word, "[bg(black)]")) {
 			printf("\033[40m");
 			clear_word(word, &word_length_counter);
@@ -139,25 +141,23 @@ void print(char* msg) {
 			printf("\033[46m");
 			clear_word(word, &word_length_counter);
 		} else if (cmp(word, "[bg(white)]")
-				|| cmp(word, "[/bg(black)]")
-				|| cmp(word, "[/bg(red)]")
-				|| cmp(word, "[/bg(green)]")
-				|| cmp(word, "[/bg(yellow)]")
-				|| cmp(word, "[/bg(blue)]")
-				|| cmp(word, "[/bg(magenta)]")
-				|| cmp(word, "[/bg(cyan)]")) {
+			   || cmp(word, "[/bg(black)]")
+			   || cmp(word, "[/bg(red)]")
+			   || cmp(word, "[/bg(green)]")
+			   || cmp(word, "[/bg(yellow)]")
+			   || cmp(word, "[/bg(blue)]")
+			   || cmp(word, "[/bg(magenta)]")
+			   || cmp(word, "[/bg(cyan)]")) {
 			printf("\033[107m");
 			clear_word(word, &word_length_counter);
 		}
-		
 		// We get if there is a space or a new line
 		// If we have, we print word and we clear it
 		else if (msg[i] == ' ' || msg[i] == '\t'
-				|| msg[i] == '\n' || msg[i] == '\r') {
+			 || msg[i] == '\n' || msg[i] == '\r') {
 			printf("%s", string_content(word));
 			clear_word(word, &word_length_counter);
 		}
-
 		// If next word is a tag, we need to separate it,
 		// so we create a new word if the next char is [
 		else if (i < length - 1 && msg[i + 1] == '[') {

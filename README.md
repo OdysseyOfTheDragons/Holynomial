@@ -53,3 +53,21 @@ No worries, it can be easily configured through special commands:
 * `@no_extra`: Disables the `POLYNOMIAL: ...` on each action
 * `@beauty_print`: Changes the print output format from
   `POLYNOMIAL: polynomial = x^2 + 2` to `x^2 + 2`
+
+## Contributions
+
+We do accept contributions from you all, but under conditions.
+
+1. Is the contribution relevant?
+2. Does it follow the spirit of the language?
+3. Is it *your* code, and not some copied code?
+4. Does it improve the already existing code?
+
+If it answers all these questions with "*yes*", then you can contribute
+using the following:
+
+* Fork the project
+* Create your branch (`git checkout -b feature/AddingWhat`)
+* Commit your changes (`git commit -m "Add feature AddingWhat"`)
+* Push your branch (`git push origin feature/AddingWhat`)
+* Open a pull request

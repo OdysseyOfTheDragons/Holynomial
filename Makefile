@@ -12,19 +12,21 @@ FLAGS=-Wall -Wextra -pedantic -fsanitize=address \
 EFLAGS=-lm
 
 # Sources
-SRC=main.c \
-	cli/colors/colors.c \
+MAIN=main.c
+CSRC=cli/colors/colors.c \
 	cli/options/options.c \
 	cli/parser/parser.c \
 	cli/strings/strings.c \
 	maths/maths.c \
 	polynomials/polynomials.c \
 	store/store.c
-OSRC=$(SRC:.c=.o)
-DSRC=$(SRC:.c=.d)
+OSRC=$(CSRC:.c=.o) $(MAIN:.c=.o)
+DSRC=$(CSRC:.c=.d) $(MAIN:.c=.d)
+HSRC=$(CSRC:.c=.h)
+SRC=$(MAIN) $(CSRC)
 
 .PHONY: all
-all: build/holypoly run
+all: format build/holypoly run
 	
 # File compilation
 build/holypoly: $(OSRC)
@@ -37,15 +39,18 @@ build/holypoly: $(OSRC)
 	@$(CC) $(FLAGS) -MM -MD -o $@ $<
 
 run:
-	./build/holypoly
+	@./build/holypoly
+
+format: $(CSRC) $(HSRC)
+	@indent -linux $^
 
 .PHONY: clean
 clean:
 	@rm -f main $(OSRC) $(DSRC) *.i *.s
 
 .PHONY: archive
-archive:
-	@-tar -zvf main.tar.gz Makefile **/*.[ch]
+archive: format
+	@-tar -zcf main.tar.gz Makefile docs/ $(SRC) $(HSRC)
 
 # Automatic dependences
 -include $(DSRC)

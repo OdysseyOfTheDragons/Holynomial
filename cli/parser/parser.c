@@ -1,1 +1,3 @@
-void parser() {}
+void parser()
+{
+}
